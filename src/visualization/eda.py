@@ -92,6 +92,46 @@ if __name__ == "__main__":
         xlabel="Congestion Level"
     )
 
+    print("\nAverage Speed Analysis")
+    print("\nOccupancy Analysis")
+    print("\nTraffic Volume Analysis")
+
+    print("Minimum traffic volume:")
+    print(traffic["traffic_volume"].min())
+
+    print("\nNegative traffic volume values:")
+    print(
+        (
+            traffic["traffic_volume"] < 0
+        ).sum()
+    )    
+
+    print("Maximum occupancy:")
+    print(traffic["occupancy"].max())
+
+    print("\nValues above 100%:")
+    print(
+        (
+            traffic["occupancy"] > 100
+        ).sum()
+    )
+
+    print("Maximum average speed:")
+    print(traffic["avg_speed"].max())
+
+    print("\nValues above 200 km/h:")
+    print(
+        traffic.loc[
+            traffic["avg_speed"] > 200,
+            ["road_id", "road_name", "date", "time", "avg_speed"]
+        ].head(20)
+    )
+
+    print("\nNumber of values above 200 km/h:")
+    print(
+        (traffic["avg_speed"] > 200).sum()
+    )
+
 
 
 
